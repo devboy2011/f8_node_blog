@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "pretify" : "lint-staged",
+    "pretify": "lint-staged",
     "start": "nodemon src/index.js",
     "watch": "node-sass --watch src/resources/scss/app.scss src/public/css/app.css",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,18 +24,18 @@
   },
   "homepage": "https://github.com/devboy2011/f8_node_blog#readme",
   "lint-stage": {
-    "src/**/*.{js,scss}":"prettier --single-quote --trailing-comma all --tab-width 4 --write",
-    "src/**/*.{json}": "prettier --single-quote false --trailing-comma all --tab-width 4 --write"
+    "src/**/*.{js,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
   },
-  "husky" : {
-    "hooks" : {
-      "pre-commit" : "lint-staged"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
   },
   "dependencies": {
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "express-handlebars": "^6.0.6",
+    "mongoose": "^6.9.0",
     "morgan": "^1.10.0",
     "node-sass": "^8.0.0"
   },
