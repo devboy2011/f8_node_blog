@@ -5,6 +5,7 @@ const Course = new Schema({
     name : {type : String, default:'', minLength : 1},
     des : String,
     img : String,
+    videoId : String,
     createdAt : {type : Date, default: Date.now},
     udpatedAt : {type : Date, default: Date.now}
 })

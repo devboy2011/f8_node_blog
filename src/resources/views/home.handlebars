@@ -3,11 +3,15 @@
         {{#each courses}}
         <div class="col-sm-6 col-lg-4">
             <div class="card">
-              <img src="{{this.img}}" class="card-img-top" alt="{{this.name}}">
+              <a href="courses/{{this.slug}}">
+                <img src="{{this.img}}" class="card-img-top" alt="{{this.name}}">
+              </a>
               <div class="card-body">
-                <h5 class="card-title">{{this.name}}</h5>
-                <p class="card-text">{{this.dis}}</p>
-                <a href="#" class="btn btn-primary">Đăng ký học</a>
+                <a href="courses/{{this.slug}}">
+                  <h5 class="card-title">{{this.name}}</h5>
+                </a>
+                <p class="card-text">{{this.dis}}</p> 
+                <a href="courses/{{this.slug}}" class="btn btn-primary">Tham gia khóa học</a>
               </div>
             </div>
         </div>
