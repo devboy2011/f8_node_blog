@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const Course = new Schema({
-    name : {type : String, default:'', minLength : 1},
+    name : {type : String},
     des : String,
     img : String,
     videoId : String,

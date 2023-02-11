@@ -1,5 +1,5 @@
 const Course = require('../models/Course');
-const { multipleMongooseToObject,mongooseToObject} = require('../../util/mongoose')
+const {mongooseToObject} = require('../../util/mongoose')
 
 class CourseController {
     // [GET] /courses
@@ -17,6 +17,19 @@ class CourseController {
             })
             .catch(err => next(err));
     }
+    
+    // [GET] /courses/create
+    create(req, res, next) {
+        res.render('courses/create');
+    }
+    
+    // [POST] /courses/store
+    store(req, res, next) {
+        const course = new Course(req.body);
+        course.save()
+        res.render('courses/create');
+    }
+    
 }
 
 module.exports = new CourseController();
