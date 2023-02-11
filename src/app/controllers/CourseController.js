@@ -25,9 +25,12 @@ class CourseController {
     
     // [POST] /courses/store
     store(req, res, next) {
-        const course = new Course(req.body);
+        const formData = req.body;
+        formData.img = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
+        const course = new Course(formData);
         course.save()
-        res.render('courses/create');
+            .then(() => res.redirect('/courses/create'))
+            .catch(err => next(err));
     }
     
 }
