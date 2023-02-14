@@ -1,7 +1,11 @@
 const express = require('express');
+const { engine, create} = require('express-handlebars');
+
+const methodOverride = require('method-override');
+
 const path = require('path');
-const { engine } = require('express-handlebars');
 const morgan = require('morgan');
+
 const { extname } = require('path');
 const port = 3000;
 
@@ -13,11 +17,19 @@ db.connect()
 
 const app = express();
 
+const hbs = create({
+    extname : "handlebars",
+    helpers : {
+        sum : (a, b) => a + b,
+    }
+})
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('combined'))
+app.use(methodOverride('_method'));
 
-app.engine('handlebars', engine());
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'resources/views'));
 
