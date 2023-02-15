@@ -1,6 +1,5 @@
 <div class="mt-4">
     <H3>Khóa học của tôi</H3>
-    
     <table class="table mt-4">
       <thead>
         <tr>
@@ -20,10 +19,53 @@
           <td>{{this.createdAt}}</td>
           <td>
             <a href="/courses/{{this._id}}/edit" class="btn btn-link">Sửa</a>
-            <a href="" class="btn btn-link">Xóa</a> 
+            <a href="" class="btn btn-link" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#delete-course-modal">Xóa</a> 
           </td>
         </tr>
         {{/each}}
       </tbody>
     </table>
 </div>
+
+{{!-- Confirm delete course --}}
+<div class="modal"  id="delete-course-modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Xác nhận xóa khóa học</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn chắc chắn chưa ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id='btn-delete-course'  class="btn btn-danger">Xóa</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form name='delete-course-form' action="" method="post"></form>
+
+<script>  
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    var courseId
+    var deleteForm = document.forms['delete-course-form']
+    var btnDeleteCourse = document.getElementById('btn-delete-course')
+    
+    $('#delete-course-modal').on('show.bs.modal', event => {
+      console.log('event shown.bs.modal fired')
+      button = event.relatedTarget
+      courseId = button.getAttribute('data-id')
+    })
+    
+    btnDeleteCourse.onclick = function() {
+      deleteForm.action = '/courses/' +courseId + '?_method=delete'
+      deleteForm.submit()
+    }
+    
+  })
+  
+</script>
