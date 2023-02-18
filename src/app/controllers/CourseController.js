@@ -29,7 +29,7 @@ class CourseController {
         formData.img = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
         const course = new Course(formData);
         course.save()
-            .then(() => res.redirect('courses/create'))
+            .then(() => res.redirect('/courses/create'))
             .catch(err => next(err));
     }
     
@@ -52,6 +52,18 @@ class CourseController {
     
     // DELETE /courses/:id
     remove(req, res, next) {
+        Course.delete({_id: req.params.id})
+            .then(() => res.redirect('back'))
+            .catch(err => next(err));
+    }
+    
+    restore(req, res, next) {
+        Course.restore({_id: req.params.id})
+            .then(() => res.redirect('back'))
+            .catch(err => next(err));
+    }
+    
+    destroy(req, res, next) {
         Course.deleteOne({_id: req.params.id})
             .then(() => res.redirect('back'))
             .catch(err => next(err));

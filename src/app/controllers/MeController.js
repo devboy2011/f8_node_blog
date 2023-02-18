@@ -10,6 +10,15 @@ class MeController {
             }))
             .catch(err => next(err));
     }
+    
+    // [GET] /me/trash/courses
+    trash(req, res, next) {
+        Course.findDeleted({})
+            .then(courses => res.render('me/trash-courses', {
+                courses : multipleMongooseToObject(courses)
+            }))
+            .catch(err => next(err));
+    }
 }
 
 module.exports = new MeController();
