@@ -26,9 +26,16 @@
       <thead>
         <tr>
           <th scope="col" colspan="2">STT</th>
-          <th scope="col">Tên khóa học</th>
-          <th scope="col">Trình độ </th>
-          <th scope="col">Thời gian tạo</th>
+          <th scope="col">
+            Tên khóa học
+            {{{sortable 'name' _sort}}}
+          </th>
+          <th scope="col">Trình độ 
+            {{{sortable 'level' _sort}}}
+          </th>
+          <th scope="col">Thời gian tạo
+            {{{sortable 'createdAt' _sort}}}
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -95,7 +102,6 @@
     var containerForm = $('form[name="container-form"]')
     
     $('#delete-course-modal').on('show.bs.modal', event => {
-      console.log('event shown.bs.modal fired')
       button = event.relatedTarget
       courseId = button.getAttribute('data-id')
     })
@@ -126,10 +132,7 @@
           event.preventDefault()
         }
     })   
-       
-       
-    
-    
+           
     function renderCheckAllSubmitBtn() {
       var checkedCount = $('input[name="courseId[]"]:checked').length
       if (checkedCount >0) {
